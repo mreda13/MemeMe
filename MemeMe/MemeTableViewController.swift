@@ -19,11 +19,15 @@ class MemeTableViewController: UITableViewController {
         NSAttributedString.Key.strokeWidth:  -3.0
     ]
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
-        self.tableView.reloadData()
     }
     
     func textFieldSetup(textfield:UITextField , text:String) {
@@ -99,6 +103,7 @@ class MemeTableViewController: UITableViewController {
 }
 
 extension UITableView {
+    
     func setEmptyView(title: String, message: String) {
         let emptyView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
         
@@ -131,6 +136,7 @@ extension UITableView {
         self.backgroundView = emptyView
         self.separatorStyle = .none
     }
+    
     func restore() {
         self.backgroundView = nil
     }

@@ -19,11 +19,15 @@ class MemesCollectionViewController: UICollectionViewController, UICollectionVie
         NSAttributedString.Key.strokeWidth:  -3.0
     ]
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.collectionView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
-        self.collectionView.reloadData()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -128,6 +132,7 @@ extension UICollectionView {
         
         self.backgroundView = emptyView
     }
+    
     func restore() {
         self.backgroundView = nil
     }
